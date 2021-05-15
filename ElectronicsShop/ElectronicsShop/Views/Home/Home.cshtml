@@ -1,0 +1,58 @@
+﻿@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@Localizer["OurProducts"]</h1>
+
+    <div class="container-fluid" id="cardsContainer"></div>
+
+    <div class="row  mt-3 justify-content-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" id="prevBtn" disabled> <i class="fas fa-arrow-circle-left"></i> Previous</button>
+            <button type="button" class="btn btn-primary" id="nextBtn"> Next <i class="fas fa-arrow-circle-right"></i></button>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    <script>
+        window.onload = (event) => {
+            loadProducts(1);
+        };
+
+        let drawCard = returnData => {
+            General.emptyNodeById('cardsContainer');
+            let cardsDiv = General.createElement({ Tag: 'div', classList: 'row justify-content-center' });
+            returnData.ProductCards.forEach(card => cardsDiv.innerHTML +=
+                `<div class="col">
+                                     <div class="card w-18" style="max-width: 18rem;">
+                                         <img src="../img/electronicsImg.jpg" class="card-img-top" alt="...">
+                                         <div class="card-body">
+                                             <h5 class="card-title">${card.Name}</h5>
+                                             <p class="card-text">${card.Description}</p>
+                                             <a href="#" class="btn btn-primary">Order</a>
+                                         </div>
+                                     </div>
+                                 </div>`);
+            document.getElementById('cardsContainer').appendChild(cardsDiv);
+
+            let prevBtn = document.getElementById('prevBtn');
+            prevBtn.disabled = returnData.IsFirstPage;
+            prevBtn.onclick = loadProducts.bind(this, returnData.CurrentPageNumber - 1);
+
+            let nextBtn = document.getElementById('nextBtn');
+            nextBtn.disabled = returnData.IsLastPage;
+            nextBtn.onclick = loadProducts.bind(this, returnData.CurrentPageNumber + 1);
+        }
+
+
+        let loadProducts = pageNum => {
+            General.sendAjax("/Home/Navigate", data => drawCard(data), { pageNum })
+        };
+    </script>
+}
+

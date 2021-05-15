@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DataAccessLayer.Entities
 {
@@ -11,6 +9,7 @@ namespace DataAccessLayer.Entities
         public string NameEn { get; set; }
         public string DescriptionAr { get; set; }
         public string DescriptionEn { get; set; }
+        public double OriginalPrice { get; set; }
         public int QuantityInStock { get; set; }
         public int Discount { get; set; }
         public int DiscountOfTwo { get; set; }

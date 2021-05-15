@@ -1,13 +1,17 @@
 using DataAccessLayer.Data;
 using DataAccessLayer.Entities;
+using DataAccessLayer.IRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Linq;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace ElectronicsShop
 {
@@ -22,45 +26,56 @@ namespace ElectronicsShop
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
                 options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 8;
+                options.Password.RequiredLength = 5;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
-                options.SignIn.RequireConfirmedEmail = true;
+                options.SignIn.RequireConfirmedEmail = false;
             })
             .AddEntityFrameworkStores<ApplicationContext>()
-            .AddDefaultTokenProviders(); ;
+            .AddDefaultTokenProviders();
 
-            //services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.SetDefaultCulture("en-Us");
+                options.AddSupportedCultures("en-US", "ar-EG");
+                options.AddSupportedUICultures("en-US", "ar-EG");
+                options.FallBackToParentUICultures = true;
+                options.RequestCultureProviders = new List<IRequestCultureProvider>
+                {
+                    new QueryStringRequestCultureProvider(),
+                    new CookieRequestCultureProvider()
+                };
+            });
 
-            //services.AddMvc();
-            //.AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix, opts => { opts.ResourcesPath = "Resources"; })
-            //.AddDataAnnotationsLocalization(options =>
-            //{
-            //    options.DataAnnotationLocalizerProvider = (type, factory) =>
-            //    {
-            //        var assemblyName = new AssemblyName(typeof(SharedResources).GetTypeInfo().Assembly.FullName);
-            //        return factory.Create("SharedResources", assemblyName.Name);
-            //    };
-            //});
+            services.AddMvc()
+            .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null) //prevent property names from lowecasing in API response;
+            .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+            .AddDataAnnotationsLocalization(options =>
+            {
+                options.DataAnnotationLocalizerProvider = (type, factory) =>
+                {
+                    var assemblyName = new AssemblyName(typeof(SharedResources).GetTypeInfo().Assembly.FullName);
+                    return factory.Create("SharedResources", assemblyName.Name);
+                };
+            });
+
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             var DbConn = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(DbConn, builder => builder.MigrationsAssembly("DataAccessLayer")));
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>().Cast<IUnitOfWork>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
+            services.AddScoped<IProductOrderRepository, ProductOrderRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddAuthentication();
-
-            services.AddMvc()
-            .AddControllersAsServices()
-            .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null); //prevent property names from lowecasing in API response;
-
-            services.AddRazorPages();
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -76,23 +91,10 @@ namespace ElectronicsShop
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+        
+            app.UseRequestLocalization();
 
             app.UseRouting();
-
-            //            var cultureSupported = new[]
-            //{
-            //                new CultureInfo("en"),
-            //                new CultureInfo("ar")
-            //            };
-
-            //            var requestLocalizationOptions = new RequestLocalizationOptions
-            //            {
-            //                DefaultRequestCulture = new RequestCulture("en", "ar"),
-            //                SupportedCultures = cultureSupported,
-            //                SupportedUICultures = cultureSupported
-            //            };
-            //            requestLocalizationOptions.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async httpContext => { return new ProviderCultureResult("en", "ar"); }));
-            //            app.UseRequestLocalization(requestLocalizationOptions);
 
             app.UseAuthentication();
             app.UseAuthorization();

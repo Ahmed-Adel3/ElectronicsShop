@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+@model LoginViewModel;
+
+<div class="container text-center">
+    <h2 class="display-5">Login</h2>
+    <br />
+</div>
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col">
+        <form asp-controller="Account" asp-action="Login" data-ajax="true" data-ajax-method="post">
+            <div class="mb-3">
+                <div class="col-12 field-validation-error float-left" asp-validation-summary="All"></div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" type="email" class="form-control">
+                <span asp-validation-for="Email" class="form-text"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control">
+                <span asp-validation-for="Password" class="form-text"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="col"></div>
+</div>

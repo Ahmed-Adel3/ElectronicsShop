@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+@model RegisterViewModel;
+
+<div class="container text-center">
+    <h2 class="display-5">Register New Account</h2>
+    <br/>
+</div>
+
+<div class="container">
+    <form asp-controller="Account" asp-action="Register" data-ajax="true" data-ajax-method="post">
+
+        <div class="mb-3 row">
+            <div class="col-12 field-validation-error float-left" asp-validation-summary="All"></div>
+        </div>
+
+        <div class="mb-4 row">
+            <div class="col-2">
+                <label asp-for="FullName" class="col-form-label float-left"></label>
+            </div>
+            <div class="col-4">
+                <input asp-for="FullName" type="text" class="form-control">
+            </div>
+            <div class="col-6">
+                <span asp-validation-for="FullName" class="form-text"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-2 float-left">
+                <label asp-for="Email" class="col-form-label float-left"></label>
+            </div>
+            <div class="col-4">
+                <input asp-for="Email" type="email" class="form-control">
+            </div>
+            <div class="col-6">
+                <span asp-validation-for="Email" class="form-text"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label asp-for="Password" class="col-form-label float-left"></label>
+            </div>
+            <div class="col-4">
+                <input asp-for="Password" type="password" class="form-control">
+            </div>
+            <div class="col-6">
+                <span asp-validation-for="Password" class="form-text"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label asp-for="ConfirmPassword" class="col-form-label float-left"></label>
+            </div>
+            <div class="col-4">
+                <input asp-for="ConfirmPassword" type="password" class="form-control">
+            </div>
+            <div class="col-6">
+                <span asp-validation-for="ConfirmPassword" class="form-text"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label asp-for="Address" class="col-form-label float-left"></label>
+            </div>
+            <div class="col-4">
+                <textarea asp-for="Address" class="form-control"> </textarea>
+            </div>
+            <div class="col-6">
+                <span asp-validation-for="Address" class="form-text"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label asp-for="Phone" class="col-form-label float-left"></label>
+            </div>
+            <div class="col-4">
+                <input asp-for="Phone" type="tel" class="form-control">
+            </div>
+            <div class="col-6">
+                <span asp-validation-for="Phone" class="form-text"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label asp-for="DateOfBirth" class="col-form-label float-left"></label>
+            </div>
+            <div class="col-4">
+                <input asp-for="DateOfBirth" type="date" class="form-control">
+            </div>
+            <div class="col-6">
+                <span asp-validation-for="DateOfBirth" class="form-text"></span>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

@@ -4,20 +4,31 @@ using System.Linq;
 
 namespace DataAccessLayer.Data
 {
-    public class UnitOfWork :IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationContext _context;
-        public UnitOfWork(ApplicationContext context)
+
+        public IProductRepository _productRepository { get; }
+        public IProductTypeRepository _productTypeRepository { get; }
+        public IProductOrderRepository _productOrderRepository { get; }
+
+        public IProductRepository ProductRepository => _productRepository;
+
+        public IProductTypeRepository ProductTypeRepository => _productTypeRepository;
+
+        public IProductOrderRepository ProductOrderRepository => _productOrderRepository;
+
+        public UnitOfWork(
+            ApplicationContext context ,
+            IProductRepository productRepository,
+            IProductTypeRepository ProductTypeRepository,
+            IProductOrderRepository ProductOrderRepository )
         {
             _context = context;
+            _productRepository = productRepository;
+            _productTypeRepository = ProductTypeRepository;
+            _productOrderRepository = ProductOrderRepository;
         }
-
-        private IProductRepository _productRepository { get; }
-        private IProductTypeRepository _productTypeRepository { get; }
-        private IProductOrderRepository _productOrderRepository { get; }
-        public IProductRepository ProductRepository => _productRepository;
-        public IProductTypeRepository ProductTypeRepository => _productTypeRepository;
-        public IProductOrderRepository ProductOrderRepository => _productOrderRepository;
 
         public void SaveChanges()
         {
