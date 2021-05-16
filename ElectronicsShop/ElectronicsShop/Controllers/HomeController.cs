@@ -25,7 +25,7 @@ namespace ElectronicsShop.Controllers
 
         public IActionResult Navigate(int pageNum)
         {
-            var data = _unitOfWork.ProductRepository.GetHomePageProducts(pageNum,5);
+            var data = _unitOfWork.ProductRepository.GetProductsWithPaging(pageNum,5);
             var culture  = Request.Cookies[".AspNetCore.Culture"];
             var productsViewModel = data.Select(a => new ProductCardViewModel(a , culture)).ToList();
             var totalCount = _unitOfWork.ProductRepository.All.Count();

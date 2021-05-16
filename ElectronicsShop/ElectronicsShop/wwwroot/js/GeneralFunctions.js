@@ -42,19 +42,24 @@
         General.emptyNode(document.getElementById(id));
     },
 
-    emptyInputById: (id)=> {
-        document.getElementById(id).value = "";
+    createNavigationButtons : (pageNum, totalPages, navBtnDivId , callBack) => {
+        let navBtnsSpan = document.getElementById(navBtnDivId);
+        General.emptyNode(navBtnsSpan);
+        let btnStyle = "btn btn-outline-primary";
+        for (var i = 1; i <= totalPages; i++) {
+            navBtnsSpan.appendChild(General.createElement({
+                Tag: "button",
+                classList: btnStyle + ((pageNum == i) ? " active" : ""),
+                innerHTML: i,
+                onclick: callBack.bind(this,i)
+            }))
+        }
     },
 
-    showGridError:(args) => {
-        let err = (args.error) ? Array.isArray(args.error) ? args.error[0].error.responseText : args.error.message : args[0].error.responseText;
-        Swal.fire({ icon: 'error', title: 'Error!', text: err })
-    },
-
-    convertDate: (inputFormat) => {
-        if (inputFormat == "Thu Jan 01 1970 02:00:00 GMT+0200 (Eastern European Standard Time)") return "";
-        function pad(s) { return (s < 10) ? '0' + s : s; }
-        var d = new Date(inputFormat);
-        return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join('/');
+    populateTypesDdl : (types, ddlContainerId) => {
+        var selectionsDiv = document.getElementById(ddlContainerId);
+        types.forEach(t => selectionsDiv.appendChild(
+            General.createElement({ Tag: "option", value: t.ProductTypeId, classList: "dropdown-item", innerHTML: t.Name })
+        ))
     }
 }

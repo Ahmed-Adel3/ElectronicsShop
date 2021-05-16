@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+@model AddProductViewModel;
+
+<div class="container text-center">
+    <h2 class="display-5">Admin Panel - Add New Product</h2>
+    <br />
+</div>
+
+<div class="container">
+    <form asp-controller="AdminPanel" asp-action="AddNewProduct" data-ajax="true" data-ajax-method="post">
+
+        <div class="mb-2 row">
+            <div class="col-12 field-validation-error float-left" asp-validation-summary="All"></div>
+        </div>
+
+        <div class="mb-1 row">
+            <div class="col form-group">
+                <label asp-for="NameAr" class="col-form-label float-left"></label>
+                <input asp-for="NameAr" type="text" class="form-control">
+                <span asp-validation-for="NameAr" class="form-text"></span>
+            </div>
+            <div class="col form-group">
+                <label asp-for="NameEn" class="col-form-label float-left"></label>
+                <input asp-for="NameEn" type="text" class="form-control">
+                <span asp-validation-for="NameEn" class="form-text"></span>
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            <div class="col form-group">
+                <label asp-for="DescriptionAr" class="col-form-label float-left"></label>
+                <textarea asp-for="DescriptionAr" type="text" class="form-control"></textarea>
+                <span asp-validation-for="DescriptionAr" class="form-text"></span>
+            </div>
+            <div class="col form-group">
+                <label asp-for="DescriptionEn" class="col-form-label float-left"></label>
+                <textarea asp-for="DescriptionEn" type="text" class="form-control"></textarea>
+                <span asp-validation-for="DescriptionEn" class="form-text"></span>
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            <div class="col form-group">
+                <label asp-for="TypeId" class="col-form-label float-left"></label>
+                <select asp-for="TypeId" class="custom-select" id="selectionsDiv">
+                    <option value="" selected> Select Product Type</option>
+                </select>
+                <span asp-validation-for="TypeId" class="form-text"></span>
+            </div>
+            <div class="col form-group">
+                <label asp-for="QuantityInStock" class="col-form-label float-left"></label>
+                <input asp-for="QuantityInStock" type="number" class="form-control" />
+                <span asp-validation-for="QuantityInStock" class="form-text"></span>
+            </div>
+        </div>
+
+        <div class="mb-1 row">
+            <div class="col form-group">
+                <label asp-for="OriginalPrice" class="col-form-label float-left"></label>
+                <input asp-for="OriginalPrice" type="number" class="form-control" />
+                <span asp-validation-for="OriginalPrice" class="form-text"></span>
+            </div>
+            <div class="col form-group">
+                <label asp-for="Discount" class="col-form-label float-left"></label>
+                <input asp-for="Discount" type="number" class="form-control" />
+                <span asp-validation-for="Discount" class="form-text"></span>
+            </div>
+            <div class="col form-group">
+                <label asp-for="DiscountOfTwo" class="col-form-label float-left"></label>
+                <input asp-for="DiscountOfTwo" type="number" class="form-control" />
+                <span asp-validation-for="DiscountOfTwo" class="form-text"></span>
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        window.onload = () => {
+            loadProductTypes();
+        };
+
+        let loadProductTypes = () => {
+            General.sendAjax("/AdminPanel/GetProductTypes", data => General.populateTypesDdl(data,"selectionsDiv"))
+        };
+    </script>
+}
+

@@ -1,24 +1,27 @@
 ﻿using DataAccessLayer.Entities;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ElectronicsShop.Models
 {
-    public class HomeViewModel
+    public class ProductGridViewModel
     {
-        public List<ProductCardViewModel> ProductCards { get; set; }
+        public List<ProductRowViewModel> ProductRows { get; set; }
         public int CurrentPageNumber { get; set; }
         public bool IsFirstPage { get; set; }
         public bool IsLastPage { get; set; }
+        public double TotalPagesNumber { get; set; }
 
-        public HomeViewModel(List<ProductCardViewModel>productCards, int currentPageNumber, bool isFirstPage, bool isLastPage)
+        public ProductGridViewModel(List<ProductRowViewModel> productRows, int currentPageNumber, bool isFirstPage, bool isLastPage, double totalPagesNumber)
         {
-            ProductCards = productCards;
+            ProductRows = productRows;
             CurrentPageNumber = currentPageNumber;
             IsFirstPage = isFirstPage;
             IsLastPage = isLastPage;
+            TotalPagesNumber = totalPagesNumber;
         }
-    }   
-
+    }
+ 
     public class ProductRowViewModel
     {
         public int ProductId { get; set; }
@@ -43,15 +46,55 @@ namespace ElectronicsShop.Models
         }
     }
 
-    public class ProductTypesViewModel
+    public class ProductTypeViewModel
     {
         public int ProductTypeId { get; set; }
         public string Name{ get; set; }
-        public ProductTypesViewModel(ProductType type, string culture)
+        public ProductTypeViewModel(ProductType type, string culture)
         {
             ProductTypeId = type.ProductTypeId;
             Name = (culture == "ar-EG") ? type.TypeNameAr : type.TypeNameEn;
         }
     }
 
+    public class AddProductViewModel
+    {
+        [Required(ErrorMessage = "RequiredNameAr")]
+        [Display(Name = "NameArLbl")]
+        public string NameAr { get; set; }
+        [Required(ErrorMessage = "RequiredNameEn")]
+        [Display(Name = "NameEnLbl")]
+        public string NameEn { get; set; }
+        [Required(ErrorMessage = "RequiredDescriptionAr")]
+        [Display(Name = "DescriptionArLbl")]
+        public string DescriptionAr { get; set; }
+        [Required(ErrorMessage = "RequiredDescriptionEn")]
+        [Display(Name = "DescriptionEnLbl")]
+        public string DescriptionEn { get; set; }
+        [Required(ErrorMessage = "RequiredType")]
+        [Display(Name = "TypeLbl")]
+        public int TypeId { get; set; }
+        [Required(ErrorMessage = "RequiredOriginalPrice")]
+        [Display(Name = "OriginalPriceLbl")]
+        [Range(1,1000000,ErrorMessage = "NotValidOriginalPrice")]
+        public double OriginalPrice { get; set; }
+
+        [Required(ErrorMessage = "RequiredQuantityInStock")]
+        [Display(Name = "QuantityInStockLbl")]
+        [Range(1, 1000000, ErrorMessage = "NotValidQuantityInStock")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "NotValidQuantityInStock")]
+        public int QuantityInStock { get; set; }
+
+        //[Required(ErrorMessage = "RequiredDiscount")]
+        [Display(Name = "DiscountLbl")]
+        [Range(0, 100, ErrorMessage = "NotValidDiscount")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "NotValidDiscount")]
+        public int? Discount { get; set; }
+
+        //[Required(ErrorMessage = "RequiredDiscountOfTwo")]
+        [Display(Name = "DiscountOfTwoLbl")]
+        [Range(0, 100, ErrorMessage = "NotValidDiscountOfTwo")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "NotValidDiscountOfTwo")]
+        public int? DiscountOfTwo { get; set; }
+    }
 }

@@ -3,19 +3,21 @@ using System.Collections.Generic;
 
 namespace ElectronicsShop.Models
 {
-    public class ProductGridViewModel
+    public class HomeViewModel
     {
-        public List<ProductRowViewModel> ProductRows { get; set; }
+        public List<ProductCardViewModel> ProductCards { get; set; }
         public int CurrentPageNumber { get; set; }
+        public int TotalPagesNumber { get; set; }
         public bool IsFirstPage { get; set; }
         public bool IsLastPage { get; set; }
 
-        public ProductGridViewModel(List<ProductRowViewModel> productRows, int currentPageNumber, bool isFirstPage, bool isLastPage)
+        public HomeViewModel(List<ProductCardViewModel> productCards, int currentPageNumber, bool isFirstPage, bool isLastPage)
         {
-            ProductRows = productRows;
+            ProductCards = productCards;
             CurrentPageNumber = currentPageNumber;
             IsFirstPage = isFirstPage;
             IsLastPage = isLastPage;
+
         }
     }
 
