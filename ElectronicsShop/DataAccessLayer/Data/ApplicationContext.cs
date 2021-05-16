@@ -29,9 +29,9 @@ namespace DataAccessLayer.Data
             string RoleId = "3417fyr-adr4–4f5e-afbf-58mrryi72gyk";
 
             modelBuilder.Entity<ProductType>().HasData(
-               new ProductType { ProductTypeId = 1, TypeNameAr = "أجهزة تليفزيون", TypeNameEn = "Televisions" },
-               new ProductType { ProductTypeId = 2, TypeNameAr = "أجهزة لابتوب", TypeNameEn = "Laptops" },
-               new ProductType { ProductTypeId = 3, TypeNameAr = "أنظمة صوت", TypeNameEn = "Sound Systems" });
+               new ProductType { ProductTypeId = 1, TypeNameAr = "جهاز تلفزيون", TypeNameEn = "Televisions" },
+               new ProductType { ProductTypeId = 2, TypeNameAr = "جهاز لابتوب", TypeNameEn = "Laptops" },
+               new ProductType { ProductTypeId = 3, TypeNameAr = "نظام صوت", TypeNameEn = "Sound Systems" });
 
             //seed admin role
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole

@@ -33,5 +33,10 @@ namespace DataAccessLayer.IRepositories
                 return FindBy(a => a.ProductType.ProductTypeId == typeId);
             return All;
         }
+
+        public int GetQuantityInStock(int ProductId)
+        {
+            return FindBy(a => a.ProductId == ProductId).FirstOrDefault().QuantityInStock;
+        }
     }
 }

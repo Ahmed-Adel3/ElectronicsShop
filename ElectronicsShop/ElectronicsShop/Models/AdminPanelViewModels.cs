@@ -97,4 +97,46 @@ namespace ElectronicsShop.Models
         [RegularExpression("([0-9]+)", ErrorMessage = "NotValidDiscountOfTwo")]
         public int? DiscountOfTwo { get; set; }
     }
+
+    public class ProductOrderGridViewModel
+    {
+        public List<ProductOrdersRowViewModel> OrdersRows { get; set; }
+        public int CurrentPageNumber { get; set; }
+        public bool IsFirstPage { get; set; }
+        public bool IsLastPage { get; set; }
+        public double TotalPagesNumber { get; set; }
+
+        public ProductOrderGridViewModel(List<ProductOrdersRowViewModel> ordersRows, int currentPageNumber, bool isFirstPage, bool isLastPage, double totalPagesNumber)
+        {
+            OrdersRows = ordersRows;
+            CurrentPageNumber = currentPageNumber;
+            IsFirstPage = isFirstPage;
+            IsLastPage = isLastPage;
+            TotalPagesNumber = totalPagesNumber;
+        }
+    }
+    public class ProductOrdersRowViewModel
+    {
+        public string ProductName { get; set; }
+        public string ClientName { get; set; }
+        public string ClientPhone { get; set; }
+        public double PricePaid { get; set; }
+        public int QuantityRequested { get; set; }
+        public ProductOrdersRowViewModel(ProductOrder order, string culture)
+        {
+            ProductName = (culture == "ar-EG") ? order.Product.NameAr : order.Product.NameEn;
+            ClientName = order.Client.FullName;
+            ClientPhone = order.Client.PhoneNumber;
+            QuantityRequested = order.QuantityOrdered;
+
+            var priceWithDiscount = order.Product.OriginalPrice - (order.Product.OriginalPrice * order.Product.Discount) / 100;
+            var discountOf2 = order.Product.DiscountOfTwo;
+            if (order.Product.DiscountOfTwo > 0)
+            {
+                if (QuantityRequested % 2 == 0)
+                    PricePaid = (priceWithDiscount - priceWithDiscount * (discountOf2 / 100)) * QuantityRequested;
+                else PricePaid = ((priceWithDiscount - priceWithDiscount * (discountOf2 / 100)) * (QuantityRequested - 1)) + priceWithDiscount;
+            }
+        }
+    }
 }

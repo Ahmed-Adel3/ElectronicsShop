@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="OurProducts" xml:space="preserve">
-    <value>Our Products</value>
+  <data name="DiscountFor2" xml:space="preserve">
+    <value>Discount for Buying two</value>
+  </data>
+  <data name="EGP" xml:space="preserve">
+    <value>EGP</value>
+  </data>
+  <data name="FinalPrice" xml:space="preserve">
+    <value>Final Price is:</value>
+  </data>
+  <data name="InStock" xml:space="preserve">
+    <value>Remaining Items in Stock:</value>
+  </data>
+  <data name="OriginalPrice" xml:space="preserve">
+    <value>OriginalPrice :</value>
+  </data>
+  <data name="PageLbl" xml:space="preserve">
+    <value>Buy Product</value>
+  </data>
+  <data name="PriceAfterDiscount" xml:space="preserve">
+    <value>Price After Discount :</value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Product Name: </value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Order Now</value>
   </data>
 </root>

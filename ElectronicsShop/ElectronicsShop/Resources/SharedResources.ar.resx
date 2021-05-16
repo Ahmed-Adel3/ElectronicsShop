@@ -118,132 +118,132 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddressLbl" xml:space="preserve">
-    <value>Full Address</value>
+    <value>العنوان بالكامل</value>
   </data>
   <data name="AddressRequired" xml:space="preserve">
-    <value>Full Address is Required</value>
+    <value>حقل العنوان مطلوب</value>
   </data>
   <data name="ConfirmPasswordLbl" xml:space="preserve">
-    <value>Confirm Password</value>
+    <value>تأكيد كلمة المرور</value>
   </data>
   <data name="ConfirmPasswordRequired" xml:space="preserve">
-    <value>Confirm Password is Required</value>
+    <value>حقل تأكيد كلمة المرور مطلوب</value>
   </data>
   <data name="DateOfBirthAfterToday" xml:space="preserve">
-    <value>Date of Birth Can't be today of after today</value>
+    <value>لا يمكن لتاريخ الميلاد أن يساوي او يزيد عن تاريخ اليوم</value>
   </data>
   <data name="DateOfBirthLbl" xml:space="preserve">
-    <value>Date of Birth</value>
+    <value>تاريخ الميلاد</value>
   </data>
   <data name="DateOfBirthRequired" xml:space="preserve">
-    <value>Date of Birth is Required</value>
+    <value>حقل تاريخ الميلاد مطلوب</value>
   </data>
   <data name="DescriptionArLbl" xml:space="preserve">
-    <value>Product Description in Arabic</value>
+    <value>وصف الجهاز باللغة العربية</value>
   </data>
   <data name="DescriptionEnLbl" xml:space="preserve">
-    <value>Product Description in English</value>
+    <value>وصف الجهاز باللغة الانجليزية</value>
   </data>
   <data name="DiscountLbl" xml:space="preserve">
-    <value>Discount (%)</value>
+    <value>الخصم (%)</value>
   </data>
   <data name="DiscountOfTwoLbl" xml:space="preserve">
-    <value>Discount for 2 items (%)</value>
+    <value>الخصم عند شراء جهازين (%)</value>
   </data>
   <data name="EmailLbl" xml:space="preserve">
-    <value>E-mail</value>
+    <value>البريد الالكتروني</value>
   </data>
   <data name="EmailRequired" xml:space="preserve">
-    <value>Email is Required</value>
+    <value>حقل البريد الالكتروني مطلوب</value>
   </data>
   <data name="FullNameLbl" xml:space="preserve">
-    <value>Full Name</value>
+    <value>الاسم بالكامل</value>
   </data>
   <data name="MaxQuantityExceeded" xml:space="preserve">
-    <value>We don't have this amount currenlty in stock, Please request less Quantity</value>
+    <value>عفوا, لا يوجد لدينا الكمية المطلوبة من المنتج , برجاء ادخال كمية أقل</value>
   </data>
   <data name="NameArLbl" xml:space="preserve">
-    <value>Product Name in Arabic</value>
+    <value>اسم المنتج باللغة العربية</value>
   </data>
   <data name="NameEnLbl" xml:space="preserve">
-    <value>Product Name in English</value>
+    <value>اسم المنتج باللغة الانجليزية</value>
   </data>
   <data name="NotValidDiscount" xml:space="preserve">
-    <value>Discount must be an Integer between 1 and 100</value>
+    <value>الخصم يجب أن يكون رقم صحيح بين ال 1 و ال 100</value>
   </data>
   <data name="NotValidDiscountOfTwo" xml:space="preserve">
-    <value>Discount for 2 items must be an Integer  between 1 and 100</value>
+    <value>الخصم ي عند شراء جهازين جب أن يكون رقم صحيح بين ال 1 و ال 100</value>
   </data>
   <data name="NotValidMail" xml:space="preserve">
-    <value>Please Enter a Valid Mail</value>
+    <value>برجاء ادخال صيغة صحيحة للبريد الالكتروني</value>
   </data>
   <data name="NotValidOriginalPrice" xml:space="preserve">
-    <value>Original Price must be between 1 and 1000000</value>
+    <value>السعر الأساسي للمنتج يجب ان يكون بين 1 و 1000000</value>
   </data>
   <data name="NotValidQuantityInStock" xml:space="preserve">
-    <value>Quantity In Stock must be an Integer between 1 and 1000000</value>
+    <value>الكمية المتاحة يجب ان يكون رقم صحيح بين 1 و 1000000</value>
   </data>
   <data name="NotValidQuantityNeeded" xml:space="preserve">
-    <value>Quantity is Not Valid</value>
+    <value>عفوا, صيغة الكمية المطلوبة غير صحيحة</value>
   </data>
   <data name="OriginalPriceLbl" xml:space="preserve">
-    <value>Original Price</value>
+    <value>السعر الأصلي للمنتج</value>
   </data>
   <data name="PasswordLbl" xml:space="preserve">
-    <value>Password</value>
+    <value>كلمة المرور</value>
   </data>
   <data name="PasswordsNotTheSame" xml:space="preserve">
-    <value>Password and Confirm Password are not the same</value>
+    <value>كلمة المرور و تأكيد كلمة المرور غير متطابقتين</value>
   </data>
   <data name="PhoneLbl" xml:space="preserve">
-    <value>Phone Number</value>
+    <value>رقم الجوال</value>
   </data>
   <data name="PhoneNotValid" xml:space="preserve">
-    <value>Please Enter a valid Egyptian Phone Number</value>
+    <value>برجاء ادخال صيغة صحيحة لرقم جوال مصري</value>
   </data>
   <data name="PhoneRequired" xml:space="preserve">
-    <value>Phone Number is Required</value>
+    <value>رقم الجوال مطلوب</value>
   </data>
   <data name="QuantityInStockLbl" xml:space="preserve">
-    <value>Quantity In Stock</value>
+    <value>الكمية المتاحة</value>
   </data>
   <data name="QuantityNeededLbl" xml:space="preserve">
-    <value>Quantity :</value>
+    <value>الكمية المطلوبة</value>
   </data>
   <data name="RequiredDescriptionAr" xml:space="preserve">
-    <value>Product Description in Arabic is Required</value>
+    <value>حقل وصف الجهاز باللغة العربية مطلوب</value>
   </data>
   <data name="RequiredDescriptionEn" xml:space="preserve">
-    <value>Product Description in English is Required</value>
+    <value>حقل وصف الجهاز باللغة الانجليزية مطلوب</value>
   </data>
   <data name="RequiredFullName" xml:space="preserve">
-    <value>Full Name is Required</value>
+    <value> حقل الاسم بالكامل مطلوب</value>
   </data>
   <data name="RequiredNameAr" xml:space="preserve">
-    <value>Product Name in Arabic is Required</value>
+    <value>حقل اسم الجهاز باللغة العربية مطلوب</value>
   </data>
   <data name="RequiredNameEn" xml:space="preserve">
-    <value>Product Name in English is Required</value>
+    <value>حقل اسم الجهاز باللغة الانجليزية مطلوب</value>
   </data>
   <data name="RequiredOriginalPrice" xml:space="preserve">
-    <value>Original Price is Required</value>
+    <value>حقل السعر الأساسي مطلوب</value>
   </data>
   <data name="RequiredPassword" xml:space="preserve">
-    <value>Password is Required</value>
+    <value>حقل كبمة المرور مطلوب</value>
   </data>
   <data name="RequiredQuantityInStock" xml:space="preserve">
-    <value>Quantity In Stock is Required</value>
+    <value>حقل لكمية المتاحة مطلوب</value>
   </data>
   <data name="RequiredQuantityNeeded" xml:space="preserve">
-    <value>Quantity is Required</value>
+    <value>من فضلك ادخل الكمية المطلوبة</value>
   </data>
   <data name="RequiredType" xml:space="preserve">
-    <value>Product Type is Required</value>
+    <value>حقل نوع الجهاز مطلوب</value>
   </data>
   <data name="TypeLbl" xml:space="preserve">
-    <value>Product Type</value>
+    <value>نوع الجهاز</value>
   </data>
   <data name="WeakPasswordCombination" xml:space="preserve">
-    <value>Password Entered is Weak, Please enter a stronger password</value>
+    <value>عفوا, صيغة الرقم السري ضعيفة , برجاء ادخال صيغة أقوي للرقم السري</value>
   </data>
 </root>

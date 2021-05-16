@@ -1,4 +1,9 @@
 ﻿@inject IViewLocalizer Localizer
+@using Microsoft.AspNetCore.Identity
+@using DataAccessLayer.Entities
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -10,8 +15,8 @@
 
     <div class="row  mt-3 justify-content-center">
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary" id="prevBtn" disabled> <i class="fas fa-arrow-circle-left"></i> Previous</button>
-            <button type="button" class="btn btn-primary" id="nextBtn"> Next <i class="fas fa-arrow-circle-right"></i></button>
+            <button type="button" class="btn btn-primary" id="prevBtn" disabled> <i class="fas fa-arrow-circle-left"></i> @Localizer["PreviousBtn"]</button>
+            <button type="button" class="btn btn-primary" id="nextBtn"> @Localizer["NextBtn"] <i class="fas fa-arrow-circle-right"></i></button>
         </div>
     </div>
 
@@ -27,17 +32,31 @@
         let drawCard = returnData => {
             General.emptyNodeById('cardsContainer');
             let cardsDiv = General.createElement({ Tag: 'div', classList: 'row justify-content-center' });
-            returnData.ProductCards.forEach(card => cardsDiv.innerHTML +=
-                `<div class="col">
-                                     <div class="card w-18" style="max-width: 18rem;">
-                                         <img src="../img/electronicsImg.jpg" class="card-img-top" alt="...">
-                                         <div class="card-body">
-                                             <h5 class="card-title">${card.Name}</h5>
-                                             <p class="card-text">${card.Description}</p>
-                                             <a href="#" class="btn btn-primary">Order</a>
-                                         </div>
-                                     </div>
-                                 </div>`);
+
+            returnData.ProductCards.forEach(card => {
+
+                let priceTxt = (card.FinalPrice != card.Price) ?
+                    card.FinalPrice.toString().bold() + " @Localizer["EGP"] @Localizer["InsteadOf"] " + card.Price.toString().strike().fontcolor('red')
+                    : card.Price.toString().bold() + " @Localizer["EGP"]";
+
+                let discountPerTwo = (card.DiscountOfTwo > 0) ? "<hr/>" + "@Localizer["Buy2Discount"] " + card.DiscountOfTwo + " %" : "";
+
+                cardsDiv.innerHTML +=
+                    `<div class="col">
+                         <div class="card w-18" style="max-width: 18rem;">
+                             <div class="card-header"> ${card.TypeName} </div>
+                             <img src="../img/electronicsImg.jpg" class="card-img-top" alt="...">
+                             <div class="card-body">
+                                 <h5 class="card-title">${card.Name}</h5>
+                                 <p class="card-text">${card.Description}</p>
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                 <a href="/Home/AddNewOrder/${card.ProductId}" class="btn btn-primary">@Localizer["OrderNow"]</a>
+                                }
+                             </div>
+                             <div class="card-footer"> ${priceTxt}  ${discountPerTwo} </div>
+                         </div>
+                     </div>`});
             document.getElementById('cardsContainer').appendChild(cardsDiv);
 
             let prevBtn = document.getElementById('prevBtn');
@@ -48,7 +67,6 @@
             nextBtn.disabled = returnData.IsLastPage;
             nextBtn.onclick = loadProducts.bind(this, returnData.CurrentPageNumber + 1);
         }
-
 
         let loadProducts = pageNum => {
             General.sendAjax("/Home/Navigate", data => drawCard(data), { pageNum })

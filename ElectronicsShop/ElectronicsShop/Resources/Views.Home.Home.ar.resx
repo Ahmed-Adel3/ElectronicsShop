@@ -117,7 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Buy2Discount" xml:space="preserve">
+    <value>اشتري جهازين و احصل علي خصم بقيمة</value>
+  </data>
+  <data name="EGP" xml:space="preserve">
+    <value>جنيه</value>
+  </data>
+  <data name="InsteadOf" xml:space="preserve">
+    <value>بدلا من</value>
+  </data>
+  <data name="NextBtn" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+  <data name="OrderNow" xml:space="preserve">
+    <value>اطلب الان</value>
+  </data>
   <data name="OurProducts" xml:space="preserve">
-    <value>منتجاتنا</value>
+    <value>الأجهزة المتاحة</value>
+  </data>
+  <data name="PreviousBtn" xml:space="preserve">
+    <value>السابق</value>
   </data>
 </root>

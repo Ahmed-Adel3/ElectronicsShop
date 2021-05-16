@@ -14,7 +14,6 @@ namespace ElectronicsShop.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IStringLocalizer<SharedResources> _localizer;
 
         public AccountController(UserManager<ApplicationUser> userManager,
@@ -23,17 +22,18 @@ namespace ElectronicsShop.Controllers
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
             _localizer = localizer;
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
@@ -48,12 +48,14 @@ namespace ElectronicsShop.Controllers
 
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid)

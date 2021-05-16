@@ -1,0 +1,97 @@
+﻿@inject IViewLocalizer Localizer
+@model AddOrderViewModel;
+@{
+    ViewData["Title"] = Localizer["PageLbl"];
+}
+
+
+<div class="container text-center">
+    <h2 class="display-5">@Localizer["PageLbl"]</h2>
+    <br />
+</div>
+
+<div class="mb-1 row">
+    <div class="col form-group">
+        <div class="jumbotron">
+            <p class="lead"> @Localizer["ProductName"] <span id="productName"></span> </p>
+            <div class="alert alert-danger" role="alert"> @Localizer["InStock"] <span id="QuantityInStock"></span> </div>
+            <hr class="my-4">
+            <p id="productDescription"></p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">@Localizer["OriginalPrice"]  <span id="productPrice"></span> @Localizer["EGP"]</li>
+                <li class="list-group-item" id="priceAferDiscountDiv">@Localizer["PriceAfterDiscount"] <span id="productFinalPrice"></span> @Localizer["EGP"]</li>
+                <li class="list-group-item"id="discountFor2Div">@Localizer["DiscountFor2"] <span id="discountOfTwo"></span> %</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col form-group">
+        <div class="container">
+            <form asp-controller="Home" asp-action="AddNewOrder" data-ajax="true" data-ajax-method="post">
+                <input hidden asp-for="ProductId" id="productIdField" />
+                <div class="mb-2 row">
+                    <div class="col-12 field-validation-error float-left" asp-validation-summary="All"></div>
+                </div>
+                <div class="mb-1 row">
+                    <div class="col form-group">
+                        <label asp-for="Quantity" class="col-form-label float-left"></label>
+                        <input asp-for="Quantity" type="number" class="form-control" onchange="calculateFinalPrice(event)" />
+                        <span asp-validation-for="Quantity" class="form-text"></span>
+                    </div>
+                </div>
+                <div class="alert alert-success" role="alert">
+                    @Localizer["FinalPrice"] <strong id="finalPriceDiv"></strong>
+                </div>
+
+                <button type="submit" class="btn btn-primary">@Localizer["Submit"] </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+        window.onload = (event) => {
+            loadProductDetails();
+        };
+        let productDetails;
+        let calculateFinalPrice = (e) => {
+            let div = document.getElementById("finalPriceDiv");
+            let amountRequired = e.target.value;
+            var price = productDetails.FinalPrice;
+            var discountOfTwo = productDetails.DiscountOfTwo;
+            var totalPrice;
+
+            if (discountOfTwo > 0) {
+                if (amountRequired % 2 == 0)
+                    totalPrice = (price - price * (discountOfTwo / 100)) * amountRequired;
+                else totalPrice = ((price - price * (discountOfTwo / 100)) * (amountRequired - 1)) + price;
+            }
+            else document.getElementById("discountFor2Div").hidden = true;
+
+            if (productDetails.Price == productDetails.FinalPrice)
+                document.getElementById("priceAferDiscountDiv").hidden = true
+
+
+            div.innerHTML = totalPrice.toFixed(1) + " EGP";
+        }
+
+        let loadProductDetails = () => {
+            let id = document.location.pathname.substring(document.location.pathname.lastIndexOf('/') + 1);
+            General.sendAjax("/Home/GetProductDetails", data => setProductDetails(data), { id });
+            document.getElementById("productIdField").value = id;
+        };
+        let setProductDetails = details => {
+            productDetails = details;
+            document.getElementById("productName").innerHTML = details.Name;
+            document.getElementById("QuantityInStock").innerHTML = details.QuantityInStock;
+            document.getElementById("productDescription").innerHTML = details.Description;
+            document.getElementById("productPrice").innerHTML = details.Price;
+            document.getElementById("productFinalPrice").innerHTML = details.FinalPrice;
+            document.getElementById("discountOfTwo").innerHTML = details.DiscountOfTwo;
+        }
+    </script>
+}
+
+
