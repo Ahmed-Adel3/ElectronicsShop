@@ -1,6 +1,7 @@
 ﻿using DataAccessLayer.Data;
 using DataAccessLayer.Entities;
 using ElectronicsShop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -38,12 +39,14 @@ namespace ElectronicsShop.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult AddNewOrder()
         {
             return View("~/Views/Home/AddNewOrder.cshtml");
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetProductDetails(int id)
         {
             var culture = Request.Query["culture"];
@@ -56,6 +59,7 @@ namespace ElectronicsShop.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddNewOrder(AddOrderViewModel model)
         {
             if (!ModelState.IsValid)
