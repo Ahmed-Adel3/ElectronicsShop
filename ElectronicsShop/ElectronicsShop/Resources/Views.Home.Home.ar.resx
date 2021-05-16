@@ -135,6 +135,9 @@
   <data name="OurProducts" xml:space="preserve">
     <value>الأجهزة المتاحة</value>
   </data>
+  <data name="OutOfStock" xml:space="preserve">
+    <value>نفذت الكمية </value>
+  </data>
   <data name="PreviousBtn" xml:space="preserve">
     <value>السابق</value>
   </data>

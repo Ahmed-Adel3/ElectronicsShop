@@ -4,24 +4,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ElectronicsShop.Models
 {
-    public class HomeViewModel
-    {
-        public List<ProductCardViewModel> ProductCards { get; set; }
-        public int CurrentPageNumber { get; set; }
-        public int TotalPagesNumber { get; set; }
-        public bool IsFirstPage { get; set; }
-        public bool IsLastPage { get; set; }
-
-        public HomeViewModel(List<ProductCardViewModel> productCards, int currentPageNumber, bool isFirstPage, bool isLastPage)
-        {
-            ProductCards = productCards;
-            CurrentPageNumber = currentPageNumber;
-            IsFirstPage = isFirstPage;
-            IsLastPage = isLastPage;
-
-        }
-    }
-
     public class ProductCardViewModel
     {
         public int ProductId { get; set; }

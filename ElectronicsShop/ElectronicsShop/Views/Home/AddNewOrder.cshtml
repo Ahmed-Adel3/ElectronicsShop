@@ -4,7 +4,6 @@
     ViewData["Title"] = Localizer["PageLbl"];
 }
 
-
 <div class="container text-center">
     <h2 class="display-5">@Localizer["PageLbl"]</h2>
     <br />
@@ -61,19 +60,13 @@
             let amountRequired = e.target.value;
             var price = productDetails.FinalPrice;
             var discountOfTwo = productDetails.DiscountOfTwo;
-            var totalPrice;
+            var totalPrice = price * amountRequired ;
 
             if (discountOfTwo > 0) {
                 if (amountRequired % 2 == 0)
                     totalPrice = (price - price * (discountOfTwo / 100)) * amountRequired;
                 else totalPrice = ((price - price * (discountOfTwo / 100)) * (amountRequired - 1)) + price;
             }
-            else document.getElementById("discountFor2Div").hidden = true;
-
-            if (productDetails.Price == productDetails.FinalPrice)
-                document.getElementById("priceAferDiscountDiv").hidden = true
-
-
             div.innerHTML = totalPrice.toFixed(1) + " EGP";
         }
 
@@ -90,6 +83,13 @@
             document.getElementById("productPrice").innerHTML = details.Price;
             document.getElementById("productFinalPrice").innerHTML = details.FinalPrice;
             document.getElementById("discountOfTwo").innerHTML = details.DiscountOfTwo;
+
+            if (details.DiscountOfTwo < 1)
+                document.getElementById("discountFor2Div").hidden = true;
+
+            if (details.Price == details.FinalPrice)
+                document.getElementById("priceAferDiscountDiv").hidden = true
+
         }
     </script>
 }

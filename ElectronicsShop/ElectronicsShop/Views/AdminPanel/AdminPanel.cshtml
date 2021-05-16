@@ -38,6 +38,7 @@
                             <th scope="col">@Localizer["Discount"]</th>
                             <th scope="col">@Localizer["FinalPrice"]</th>
                             <th scope="col">@Localizer["DiscountOf2"]</th>
+                            <th scope="col">@Localizer["QuantityInStock"]</th>
                         </tr>
                     </thead>
                     <tbody id="gridBodyContainer">
@@ -70,7 +71,7 @@
         let drawGridRows = returnData => {       
             var gridBody = document.getElementById("gridBodyContainer");
             General.emptyNode(gridBody);
-            returnData.ProductRows.forEach(row => gridBody.innerHTML +=
+            returnData.GridRows.forEach(row => gridBody.innerHTML +=
                 `<tr>
                     <td>${row.Name}</td>
                     <td>${row.TypeName}</td>
@@ -78,6 +79,7 @@
                     <td>${row.Discount} %</td>
                     <td>${row.FinalPrice}</td>
                     <td>${row.DiscountOfTwo} %</td>
+                    <td>${row.QuantityInStock}</td>
                 </tr>`);
 
             let prevBtn = document.getElementById('prevBtn');

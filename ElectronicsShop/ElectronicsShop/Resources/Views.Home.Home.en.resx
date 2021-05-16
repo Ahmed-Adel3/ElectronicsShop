@@ -135,6 +135,9 @@
   <data name="OurProducts" xml:space="preserve">
     <value>Our Products</value>
   </data>
+  <data name="OutOfStock" xml:space="preserve">
+    <value>Out of Stock</value>
+  </data>
   <data name="PreviousBtn" xml:space="preserve">
     <value>Previous</value>
   </data>

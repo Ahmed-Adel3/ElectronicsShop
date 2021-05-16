@@ -28,7 +28,8 @@ namespace ElectronicsShop.Controllers
             var totalCount = _unitOfWork.ProductRepository.GetGridCount(typeId);
             var pagesCount = Math.Ceiling(totalCount/10d);
             var isLastPage = pageNum * 10 >= totalCount && (pageNum - 1) * 10 < totalCount;
-            var gridViewModel = new ProductGridViewModel(productsRowViewModel, pageNum, pageNum == 1, isLastPage , pagesCount);
+            var gridViewModel = new GridViewModel<ProductRowViewModel>
+                (productsRowViewModel, pageNum, pageNum == 1, isLastPage , pagesCount);
             return new JsonResult(gridViewModel);
         }
         public IActionResult GetProductTypes()
@@ -79,7 +80,7 @@ namespace ElectronicsShop.Controllers
             var totalCount = _unitOfWork.ProductOrderRepository.All.Count();
             var pagesCount = Math.Ceiling(totalCount / 10d);
             var isLastPage = pageNum * 10 >= totalCount && (pageNum - 1) * 10 < totalCount;
-            var gridViewModel = new ProductOrderGridViewModel(orderRowViewModel, pageNum, pageNum == 1, isLastPage, pagesCount);
+            var gridViewModel = new GridViewModel<ProductOrdersRowViewModel>(orderRowViewModel, pageNum, pageNum == 1, isLastPage, pagesCount);
             return new JsonResult(gridViewModel);
         }
     }

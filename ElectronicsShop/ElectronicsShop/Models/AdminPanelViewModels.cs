@@ -4,24 +4,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ElectronicsShop.Models
 {
-    public class ProductGridViewModel
-    {
-        public List<ProductRowViewModel> ProductRows { get; set; }
-        public int CurrentPageNumber { get; set; }
-        public bool IsFirstPage { get; set; }
-        public bool IsLastPage { get; set; }
-        public double TotalPagesNumber { get; set; }
-
-        public ProductGridViewModel(List<ProductRowViewModel> productRows, int currentPageNumber, bool isFirstPage, bool isLastPage, double totalPagesNumber)
-        {
-            ProductRows = productRows;
-            CurrentPageNumber = currentPageNumber;
-            IsFirstPage = isFirstPage;
-            IsLastPage = isLastPage;
-            TotalPagesNumber = totalPagesNumber;
-        }
-    }
- 
     public class ProductRowViewModel
     {
         public int ProductId { get; set; }
@@ -98,23 +80,6 @@ namespace ElectronicsShop.Models
         public int? DiscountOfTwo { get; set; }
     }
 
-    public class ProductOrderGridViewModel
-    {
-        public List<ProductOrdersRowViewModel> OrdersRows { get; set; }
-        public int CurrentPageNumber { get; set; }
-        public bool IsFirstPage { get; set; }
-        public bool IsLastPage { get; set; }
-        public double TotalPagesNumber { get; set; }
-
-        public ProductOrderGridViewModel(List<ProductOrdersRowViewModel> ordersRows, int currentPageNumber, bool isFirstPage, bool isLastPage, double totalPagesNumber)
-        {
-            OrdersRows = ordersRows;
-            CurrentPageNumber = currentPageNumber;
-            IsFirstPage = isFirstPage;
-            IsLastPage = isLastPage;
-            TotalPagesNumber = totalPagesNumber;
-        }
-    }
     public class ProductOrdersRowViewModel
     {
         public string ProductName { get; set; }
@@ -137,6 +102,7 @@ namespace ElectronicsShop.Models
                     PricePaid = (priceWithDiscount - priceWithDiscount * (discountOf2 / 100)) * QuantityRequested;
                 else PricePaid = ((priceWithDiscount - priceWithDiscount * (discountOf2 / 100)) * (QuantityRequested - 1)) + priceWithDiscount;
             }
+            else PricePaid = priceWithDiscount * QuantityRequested;
         }
     }
 }

@@ -7,7 +7,6 @@ namespace DataAccessLayer.Data
 {
     public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {
-
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {}
@@ -50,6 +49,8 @@ namespace DataAccessLayer.Data
                 Email = "admin@admin.com",
                 EmailConfirmed = true,
                 FullName = "Application Admin",
+                LockoutEnabled = false,
+                PhoneNumber = "01112222345"
             };
 
             var CustomerUser = new ApplicationUser

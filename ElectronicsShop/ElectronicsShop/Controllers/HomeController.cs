@@ -33,7 +33,7 @@ namespace ElectronicsShop.Controllers
             var productsViewModel = data.Select(a => new ProductCardViewModel(a , culture)).ToList();
             var totalCount = _unitOfWork.ProductRepository.All.Count();
             var isLastPage = pageNum * 5 >= totalCount && (pageNum - 1)*5 < totalCount;
-            var homeViewModel = new HomeViewModel(productsViewModel, pageNum, pageNum == 1 , isLastPage);
+            var homeViewModel = new GridViewModel<ProductCardViewModel>(productsViewModel, pageNum, pageNum == 1 , isLastPage, totalCount);
             return new JsonResult(homeViewModel);
         }
 

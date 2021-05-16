@@ -11,13 +11,9 @@ namespace DataAccessLayer.Data
         public IProductRepository _productRepository { get; }
         public IProductTypeRepository _productTypeRepository { get; }
         public IProductOrderRepository _productOrderRepository { get; }
-
         public IProductRepository ProductRepository => _productRepository;
-
         public IProductTypeRepository ProductTypeRepository => _productTypeRepository;
-
         public IProductOrderRepository ProductOrderRepository => _productOrderRepository;
-
         public UnitOfWork(
             ApplicationContext context ,
             IProductRepository productRepository,
@@ -29,7 +25,6 @@ namespace DataAccessLayer.Data
             _productTypeRepository = ProductTypeRepository;
             _productOrderRepository = ProductOrderRepository;
         }
-
         public void SaveChanges()
         {
             bool saveFailed;

@@ -52,7 +52,7 @@
         let drawGridRows = returnData => {
             var gridBody = document.getElementById("gridBodyContainer");
             General.emptyNode(gridBody);
-            returnData.OrdersRows.forEach(row => gridBody.innerHTML +=
+            returnData.GridRows.forEach(row => gridBody.innerHTML +=
                 `<tr>
                     <td>${row.ProductName}</td>
                     <td>${row.ClientName}</td>

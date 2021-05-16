@@ -33,13 +33,22 @@
             General.emptyNodeById('cardsContainer');
             let cardsDiv = General.createElement({ Tag: 'div', classList: 'row justify-content-center' });
 
-            returnData.ProductCards.forEach(card => {
+            returnData.GridRows.forEach(card => {
 
                 let priceTxt = (card.FinalPrice != card.Price) ?
                     card.FinalPrice.toString().bold() + " @Localizer["EGP"] @Localizer["InsteadOf"] " + card.Price.toString().strike().fontcolor('red')
                     : card.Price.toString().bold() + " @Localizer["EGP"]";
 
                 let discountPerTwo = (card.DiscountOfTwo > 0) ? "<hr/>" + "@Localizer["Buy2Discount"] " + card.DiscountOfTwo + " %" : "";
+
+                let orderBtn=""; 
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    @:if (card.QuantityInStock > 0)
+                    @:  orderBtn = `<a href='/Home/AddNewOrder/${card.ProductId}' class='btn btn-primary'>@Localizer["OrderNow"]</a>`;
+                    @:else
+                    @:  orderBtn = `<div class="alert alert-danger" role="alert">@Localizer["OutOfStock"]</div>`;
+                }
 
                 cardsDiv.innerHTML +=
                     `<div class="col">
@@ -49,10 +58,7 @@
                              <div class="card-body">
                                  <h5 class="card-title">${card.Name}</h5>
                                  <p class="card-text">${card.Description}</p>
-                                @if (SignInManager.IsSignedIn(User))
-                                {
-                                 <a href="/Home/AddNewOrder/${card.ProductId}" class="btn btn-primary">@Localizer["OrderNow"]</a>
-                                }
+                                 ${orderBtn}
                              </div>
                              <div class="card-footer"> ${priceTxt}  ${discountPerTwo} </div>
                          </div>

@@ -7,8 +7,6 @@ namespace DataAccessLayer.Data
         IProductRepository ProductRepository { get; }
         IProductTypeRepository ProductTypeRepository { get; }
         IProductOrderRepository ProductOrderRepository { get; }
-
-
         void SaveChanges();
     }
 }

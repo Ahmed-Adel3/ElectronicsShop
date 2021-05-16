@@ -156,6 +156,9 @@
   <data name="Quantity" xml:space="preserve">
     <value>عدد الأجهزة المتاحة</value>
   </data>
+  <data name="QuantityInStock" xml:space="preserve">
+    <value>الكمية المتاحة</value>
+  </data>
   <data name="SelectType" xml:space="preserve">
     <value>اختر نوع الجهاز</value>
   </data>

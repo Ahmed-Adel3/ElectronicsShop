@@ -156,6 +156,9 @@
   <data name="Quantity" xml:space="preserve">
     <value>Quantity in Stock</value>
   </data>
+  <data name="QuantityInStock" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
   <data name="SelectType" xml:space="preserve">
     <value>Select Product Type</value>
   </data>
