@@ -60,6 +60,8 @@ namespace DataAccessLayer.Data
                 Email = "ahmed.al.adl333@gmail.com",
                 EmailConfirmed = true,
                 FullName = "Ahmed Adel",
+                LockoutEnabled = false,
+                PhoneNumber = "01112222345"
             };
 
             //set user password
